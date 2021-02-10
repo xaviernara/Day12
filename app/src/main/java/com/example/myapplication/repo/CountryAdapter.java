@@ -8,35 +8,22 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.myapplication.databinding.CountryRecyclerBinding;
-import com.example.myapplication.view.MainActivity;
 import com.github.twocoffeesoneteam.glidetovectoryou.GlideToVectorYou;
 import com.github.twocoffeesoneteam.glidetovectoryou.GlideToVectorYouListener;
 
 import java.util.List;
 
-public class CountryAdapter {
+public class CountryAdapter extends RecyclerView.Adapter<CountryAdaptor.CountryViewHolder> {
 
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ListView;
+    private final List<CountryResponse> countryResponsesList;
+    CountryRecyclerBinding binding;
 
-import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.RecyclerView;
-
-
-import java.util.List;
-
-    public static class CountryAdaptor extends RecyclerView.Adapter<CountryAdaptor.CountryViewHolder> {
-
-        private final List<CountryResponse> countryResponsesList;
-        CountryRecyclerBinding binding;
-
-        public CountryAdaptor(List<CountryResponse> countryResponsesList) {
-            this.countryResponsesList = countryResponsesList;
-        }
+    public CountryAdapter(List<CountryResponse> countryResponsesList) {
+        this.countryResponsesList = countryResponsesList;
+    }
 
 
-        /**
+    /*
          * Called when RecyclerView needs a new {@link ViewHolder} of the given type to represent
          * an item.
          * <p>
@@ -85,8 +72,11 @@ import java.util.List;
         @Override
         public void onBindViewHolder(@NonNull CountryAdaptor.CountryViewHolder holder, int position) {
 
-            holder.setCapital(countryResponsesList.get(position).getCapitalCity().getCapital());
 
+            holder.setCapital(countryResponsesList.get(position).getCapitalCity().getCapital());
+            holder.setCurrency(countryResponsesList.get(position).getCurrency().getName());
+            holder.setLanguage(countryResponsesList.get(position).getLanguage().getIso6391());
+            holder.setImageUrl(countryResponsesList.get(position).getFlagUrl());
 
 
         }
@@ -98,14 +88,14 @@ import java.util.List;
          */
         @Override
         public int getItemCount() {
-            return 0;
+            return countryResponsesList.size();
         }
 
 
 
-        //---------------------- View holder class--------------------------
+        //---------------------- View holder class--------------------------//
 
-        public static class CountryViewHolder extends RecyclerView.ViewHolder{
+        static class CountryViewHolder extends RecyclerView.ViewHolder{
 
             CountryRecyclerBinding binding;
 
@@ -164,18 +154,6 @@ import java.util.List;
             }
 
 
-
-
-
-
-
-
         }
     }
-}
 
-/*
-*
-*
-*
-* */

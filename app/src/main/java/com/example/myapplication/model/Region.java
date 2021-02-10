@@ -100,4 +100,12 @@ public class Region {
 
     @Json(name = "regions")
     private String regions;
+
+    public String getRegions() {
+        return regions;
+    }
+
+    public void setRegions(String regions) {
+        this.regions = regions;
+    }
 }

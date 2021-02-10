@@ -7,6 +7,7 @@ import com.example.myapplication.model.Name;
 import com.example.myapplication.model.Region;
 import com.example.myapplication.model.RegionalBlock;
 import com.example.myapplication.model.ResponseExample;
+import com.squareup.moshi.Json;
 
 public class CountryResponse {
 
@@ -113,6 +114,11 @@ public class CountryResponse {
     private RegionalBlock regionalBlock;
     private ResponseExample responseExample;
 
+    @Json(name = "flag")
+    private String flagUrl;
+
+
+
     public CountryResponse(Name name, Currencies currency, Language language, CapitalCity capitalCity, Region region, RegionalBlock regionalBlock, ResponseExample responseExample) {
         this.name = name;
         this.currency = currency;
@@ -123,6 +129,13 @@ public class CountryResponse {
         this.responseExample = responseExample;
     }
 
+    public String getFlagUrl() {
+        return flagUrl;
+    }
+
+    public void setFlagUrl(String flagUrl) {
+        this.flagUrl = flagUrl;
+    }
     public Name getName() {
         return name;
     }
